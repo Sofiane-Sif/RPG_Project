@@ -15,12 +15,14 @@ public abstract class Combatant {
         return healthPoint;
     }
 
-    public abstract void fight(Combatant combatant);
-
     public void loose(int hp) {
-        // healthPoint = healthPoint - hp;
         healthPoint -= hp;
+        // ... équivalant à : healthPoint = healthPoint - hp;
     }
+
+    // Chaque "vrai" combatant (non "abstract") implémente un code différent
+    // pour la méthode "fight"
+    public abstract void fight(Combatant combatant);
 
     private String name;
     private int healthPoint;

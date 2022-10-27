@@ -11,5 +11,6 @@ public abstract class Ennemy extends Combatant {
         return damagePoints;
     }
 
+    // Les points de dégats sont intégrés aux ennemis (ils n'ont pas d'arme)
     private int damagePoints;
 }

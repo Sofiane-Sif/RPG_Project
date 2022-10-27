@@ -6,5 +6,7 @@ public abstract class Hero extends Combatant {
         super(n, h);
     }
 
-    public abstract void use(Item item);
+    // Abstrait car n'importe quel hero peut prendre un objet mais son
+    // utilisation dépend du type du héro (une arme n'est pas utile à un mage)
+    public abstract void take(Item item);
 }

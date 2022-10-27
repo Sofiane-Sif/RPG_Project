@@ -10,10 +10,10 @@ public class CombatantTest {
 
     @Test
     void fightTest() {
-        Warrior w = new Warrior("Ron", 5);
+        Warrior w = new Warrior("Ron");
         Weapon sword = new Weapon("sword", 1);
-        w.use(sword);
-        Dragon d = new Dragon("Dracofeu", 5, 2);
+        w.take(sword);
+        Dragon d = new Dragon("Dracofeu");
         d.fight(w);
         w.fight(d);
         assertTrue(d.getHealthPoint() == 4);
