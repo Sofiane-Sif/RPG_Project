@@ -46,8 +46,10 @@ public class Game {
                     + " attaque le gentil " + goodOne.getName() + "...");
             badOne.fight(goodOne);
             if (goodOne.getHealthPoint() <= 0) {
-                displayMessage("Le pauvre " + goodOne.getName() + " a été vaincu...");
+                displayMessage
+                        ("Le pauvre " + goodOne.getName() + " a été vaincu...");
                 heros.remove(ixHero);
+                ixHero--; // Correction: évite que le suivant perde son tour
             } else {
 
                 // Riposte du gentil, s'il n'est pas vaincu
