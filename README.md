@@ -1,1 +1,1 @@
-# Code amorce pour le TP4 RPG
+# TP4 Java - Création de Mini RPG LITE 3000 
