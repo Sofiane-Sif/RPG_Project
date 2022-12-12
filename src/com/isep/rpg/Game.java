@@ -17,13 +17,30 @@ public class Game {
         // Il faut normalement 5 héros de types différents...
         heros = new ArrayList<>();
 
-        for(int i=0; i<5; i++) {
+        displayMessage("Avant tout, veuillez indiquer le nombre de héros souhaité (min : 1 héros, max : 5 héros) : ");
+
+        boolean validNumber = false;
+        int numberHero = 0;
+        while (!validNumber) {
+            try {
+                numberHero = scanner.nextInt();
+                while (numberHero > 5 || numberHero <= 0) {
+                    System.out.println("Veuillez respecter les règles du jeu... (min : 1 héros, max : 5 héros)");
+                    numberHero = scanner.nextInt();
+                }
+                validNumber = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Veuillez saisir un numéro valide svp");
+                scanner.nextLine();
+            }
+        }
+
+        for (int i = 0; i < numberHero; i++) {
 
             // Demande à l'utilisateur avec quelles classes il veut jouer :
             if (i == 0) {
                 displayMessage("Choisissez la classe de votre premier héros : (entrez le numéro correspondant)");
-            }
-            else {
+            } else {
                 displayMessage("\nChoisissez la classe de votre " + (i + 1) + "-ème héros : (entrez le numéro correspondant)");
             }
             displayMessage("[1] Warrior (5 hp) \n[2] Hunter (6 hp) \n[3] Mage (6 hp) \n[4] Healer (8 hp)");
@@ -31,18 +48,18 @@ public class Game {
             // Sécurisation du scanner
             int firstHeroNumber = 0;
             boolean tmp = false;
-            while(!tmp) {
-                    try {
+            while (!tmp) {
+                try {
+                    firstHeroNumber = scanner.nextInt();
+                    while (firstHeroNumber > 4 || firstHeroNumber <= 0) {
+                        displayMessage("ATTENTION : Veuillez saisir un numéro valide !");
                         firstHeroNumber = scanner.nextInt();
-                        while (firstHeroNumber > 4 || firstHeroNumber <= 0) {
-                            displayMessage("ATTENTION : Veuillez saisir un numéro valide !");
-                            firstHeroNumber = scanner.nextInt();
-                        }
-                        tmp = true;
-                    } catch (InputMismatchException e) {
-                        displayMessage("Vous devez saisir un numéro valide ! Choisissez la classe de votre " + (i + 1) + "-ème héros : (entrez le numéro correspondant)?");
-                        scanner.nextLine();
                     }
+                    tmp = true;
+                } catch (InputMismatchException e) {
+                    displayMessage("Vous devez saisir un numéro valide ! Choisissez la classe de votre " + (i + 1) + "-ème héros : (entrez le numéro correspondant)?");
+                    scanner.nextLine();
+                }
             }
 
 
@@ -63,11 +80,11 @@ public class Game {
                     break;
 
                 case 3:
-                    firstHero = new Mage(firstHeroName,8);
+                    firstHero = new Mage(firstHeroName, 8);
                     break;
 
                 case 4:
-                    firstHero = new Healer(firstHeroName, 10,3);
+                    firstHero = new Healer(firstHeroName, 10, 3);
                     break;
             }
 
@@ -79,38 +96,37 @@ public class Game {
                 case 1:
                     displayMessage("Vous avez le choix entre deux armes : [1] Knife (3 points de dégâts) ou [2] AmericanPunch (2 points de dégâts). Entrez le numéro de votre arme : ");
                     boolean tmp1 = false;
-                    while(!tmp1) {
-                            try {
-                                firstHeroWeapon     = scanner.nextInt();
-                                while (firstHeroWeapon > 2 || firstHeroWeapon <= 0) {
-                                    displayMessage("ATTENTION : Veuillez saisir un numéro valide !");
-                                    firstHeroWeapon = scanner.nextInt();
-                                }
-                                tmp1 = true;
+                    while (!tmp1) {
+                        try {
+                            firstHeroWeapon = scanner.nextInt();
+                            while (firstHeroWeapon > 2 || firstHeroWeapon <= 0) {
+                                displayMessage("ATTENTION : Veuillez saisir un numéro valide !");
+                                firstHeroWeapon = scanner.nextInt();
                             }
-                            catch (InputMismatchException e) {
-                                displayMessage("Vous devez saisir un numéro valide ! [1] Knife (3 points de dégâts) ou [2] AmericanPunch (2 points de dégâts). Entrez le numéro de votre arme : ");
-                                scanner.nextLine();
-                            }
+                            tmp1 = true;
+                        } catch (InputMismatchException e) {
+                            displayMessage("Vous devez saisir un numéro valide ! [1] Knife (3 points de dégâts) ou [2] AmericanPunch (2 points de dégâts). Entrez le numéro de votre arme : ");
+                            scanner.nextLine();
+                        }
                     }
-                    if (firstHeroWeapon == 1){
+                    if (firstHeroWeapon == 1) {
                         Weapon knife = new Weapon("Knife", 3);
                         firstHero.take(knife);
-                        displayRecapitulatif(firstHero, "Knife",3);
+                        displayRecapitulatif(firstHero, "Knife", 3);
                     }
-                    if (firstHeroWeapon == 2){
+                    if (firstHeroWeapon == 2) {
                         Weapon americanPunch = new Weapon("AmericanPunch", 2);
                         firstHero.take(americanPunch);
-                        displayRecapitulatif(firstHero, "AmericanPunch",2);
+                        displayRecapitulatif(firstHero, "AmericanPunch", 2);
                     }
                     break;
 
                 case 2:
                     displayMessage("Vous avez le choix entre deux armes : [1] Arbalète (2 points de dégâts) ou [2] Arc (2 points de dégâts). Entrez le numéro de votre arme : ");
                     boolean tmp2 = false;
-                    while(!tmp2) {
+                    while (!tmp2) {
                         try {
-                            firstHeroWeapon     = scanner.nextInt();
+                            firstHeroWeapon = scanner.nextInt();
                             while (firstHeroWeapon > 2 || firstHeroWeapon <= 0) {
                                 displayMessage("ATTENTION : Veuillez saisir un numéro valide !");
                                 firstHeroWeapon = scanner.nextInt();
@@ -122,22 +138,22 @@ public class Game {
                         }
                     }
 
-                    if (firstHeroWeapon == 1){
+                    if (firstHeroWeapon == 1) {
                         firstHero.take(new Weapon("Arbalète", 2));
-                        displayRecapitulatif(firstHero, "Arbalète",2);
+                        displayRecapitulatif(firstHero, "Arbalète", 2);
                     }
-                    if (firstHeroWeapon == 2){
+                    if (firstHeroWeapon == 2) {
                         firstHero.take(new Weapon("Arc", 2));
-                        displayRecapitulatif(firstHero, "Arc",2);
+                        displayRecapitulatif(firstHero, "Arc", 2);
                     }
                     break;
 
                 case 3:
                     displayMessage("Vous avez le choix entre deux armes : [1] Boule de feu (2 points de dégâts) ou [2] Stone (3 points de dégâts). Entrez le numéro de votre arme : ");
                     boolean tmp3 = false;
-                    while(!tmp3) {
+                    while (!tmp3) {
                         try {
-                            firstHeroWeapon     = scanner.nextInt();
+                            firstHeroWeapon = scanner.nextInt();
                             while (firstHeroWeapon > 2 || firstHeroWeapon <= 0) {
                                 displayMessage("ATTENTION : Veuillez saisir un numéro valide !");
                                 firstHeroWeapon = scanner.nextInt();
@@ -149,13 +165,13 @@ public class Game {
                         }
                     }
 
-                    if (firstHeroWeapon == 1){
+                    if (firstHeroWeapon == 1) {
                         firstHero.take(new Weapon("Boule-de-feu", 2));
-                        displayRecapitulatif(firstHero, "Boule-de-feu",2);
+                        displayRecapitulatif(firstHero, "Boule-de-feu", 2);
                     }
-                    if(firstHeroWeapon == 2){
+                    if (firstHeroWeapon == 2) {
                         firstHero.take(new Weapon("Stone", 3));
-                        displayRecapitulatif(firstHero, "Stone",3);
+                        displayRecapitulatif(firstHero, "Stone", 3);
                     }
                     break;
 
@@ -171,12 +187,12 @@ public class Game {
 
         // Liste des ennemis :
         enemies = new ArrayList<>();
-        enemies.add( new Dragon("Dracofeu") );
-        enemies.add( new Orc("Lugnarz") );
-        enemies.add( new Tauren("Hardy") );
-        enemies.add( new Troll("Triller") );
+        enemies.add(new Dragon("Dracofeu"));
+        enemies.add(new Orc("Lugnarz"));
+        enemies.add(new Tauren("Hardy"));
+        enemies.add(new Troll("Triller"));
         Collections.shuffle(enemies);         // Mélange de la liste pour que l'ordre des ennemies soit aléatoire
-        enemies.add( new Boss("BOSS") );
+        enemies.add(new Boss("BOSS"));
     }
 
     public void start() {
