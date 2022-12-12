@@ -11,6 +11,10 @@ public class Weapon extends Item {
         return damagePoints;
     }
 
+    public void setDamagePoints(int damagePoints) {
+        this.damagePoints = damagePoints;
+    }
+
     // Une arme inflige des points de dégats
     private int damagePoints;
 }

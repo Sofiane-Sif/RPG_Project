@@ -10,6 +10,6 @@ public class Dragon extends Ennemy {
     // Implémentation de la méthode abstraite "fight" par le dragon
     @Override
     public void fight(Combatant combatant) {
-        combatant.loose( getDamagePoints() );
+        combatant.looseLife( getDamagePoints() );
     }
 }

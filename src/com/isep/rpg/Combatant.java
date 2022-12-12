@@ -15,9 +15,13 @@ public abstract class Combatant {
         return healthPoint;
     }
 
-    public void loose(int hp) {
+    public void looseLife(int hp) {
         healthPoint -= hp;
         // ... équivalant à : healthPoint = healthPoint - hp;
+    }
+
+    public void winLife(int hp) {
+        healthPoint += hp;
     }
 
     // Chaque "vrai" combatant (non "abstract") implémente un code différent
